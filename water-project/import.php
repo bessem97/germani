@@ -1,0 +1,34 @@
+<?php
+$conn = new mysqli("127.0.0.1", "root", "", "water", 3307);
+
+$file = fopen("OXYGENE LIGNE-1.csv", "r");
+
+$line_number = 0;
+$imported = 0;
+
+while (($line = fgets($file)) !== false) {
+  $line_number++;
+  if ($line_number <= 21) continue;
+  
+  $parts = explode(";", trim($line));
+  if (count($parts) < 3) continue;
+  
+  $date_raw = $parts[0];
+  $do       = floatval(str_replace(",", ".", $parts[1]));
+  $temp     = floatval(str_replace(",", ".", $parts[2]));
+  
+  $d = DateTime::createFromFormat("d/m/Y H:i", $date_raw);
+  if (!$d) continue;
+  $date_mysql = $d->format("Y-m-d H:i:s");
+  
+  $stmt = $conn->prepare(
+    "INSERT INTO oxygene_ligne1 (date_heure, do_mgl, temperature) VALUES (?, ?, ?)"
+  );
+  $stmt->bind_param("sdd", $date_mysql, $do, $temp);
+  $stmt->execute();
+  $imported++;
+}
+
+fclose($file);
+echo "✅ $imported lignes importées avec succès !";
+?>

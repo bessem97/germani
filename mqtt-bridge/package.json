@@ -1,0 +1,14 @@
+{
+  "name": "mqtt-bridge-service",
+  "version": "1.0.0",
+  "description": "MQTT to MySQL bridge for Qatra Mind IoT telemetry",
+  "main": "bridge.js",
+  "scripts": {
+    "start": "node bridge.js",
+    "simulator": "node simulator.js"
+  },
+  "dependencies": {
+    "mqtt": "^5.10.1",
+    "mysql2": "^3.11.0"
+  }
+}

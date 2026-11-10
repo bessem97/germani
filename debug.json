@@ -1,0 +1,1 @@
+[{"id":"4","capteur_id":"NP1","pression":9.5,"debit":42,"created_at":"2026-05-14 21:55:21"},{"id":"3","capteur_id":"NP1","pression":9.5,"debit":42,"created_at":"2026-05-14 21:50:51"},{"id":"2","capteur_id":"NP3","pression":3,"debit":33,"created_at":"2026-05-14 21:01:24"},{"id":"1","capteur_id":"P01","pression":3.3,"debit":18,"created_at":"2026-05-14 15:23:46"}]
